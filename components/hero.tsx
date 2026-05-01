@@ -1,9 +1,9 @@
 "use client"
 
 import Link from "next/link"
-import { ArrowRight } from "lucide-react"
+import Image from "next/image"
+import { ArrowRight, Sparkles } from "lucide-react"
 import { Button } from "@/components/ui/button"
-
 
 function NeonParticles() {
   return (
@@ -27,55 +27,45 @@ function NeonParticles() {
 
 export function Hero() {
   return (
-    <section id="inicio" className="relative min-h-screen flex items-center overflow-hidden bg-background">
+    <section id="inicio" className="relative min-h-screen flex items-center overflow-hidden bg-[#050505]">
       {/* Animated neon particles */}
       <NeonParticles />
       
-      {/* Subtle gradient orbs */}
-      <div className="absolute top-1/3 right-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[150px] animate-pulse" style={{ animationDuration: '8s' }} />
-      <div className="absolute bottom-1/4 left-1/3 w-[400px] h-[400px] bg-primary/3 rounded-full blur-[120px] animate-pulse" style={{ animationDuration: '10s', animationDelay: '2s' }} />
-
-      {/* Grid lines */}
-      <div className="absolute inset-0">
-        <div className="absolute left-[10%] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-border/50 to-transparent" />
-        <div className="absolute left-[30%] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-border/30 to-transparent" />
-        <div className="absolute right-[30%] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-border/30 to-transparent" />
-        <div className="absolute right-[10%] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-border/50 to-transparent" />
-      </div>
+      {/* Intense Background Glows */}
+      <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[150px] animate-pulse pointer-events-none" style={{ animationDuration: '8s' }} />
+      <div className="absolute bottom-1/4 left-1/4 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[150px] animate-pulse pointer-events-none" style={{ animationDuration: '10s', animationDelay: '2s' }} />
+      <div className="absolute inset-0 grid-pattern opacity-40 pointer-events-none" />
 
       {/* Main content */}
-      <div className="relative w-full max-w-7xl mx-auto px-6">
+      <div className="relative w-full max-w-7xl mx-auto px-4 md:px-6 z-10 pt-20 pb-10">
         
-        {/* Bento-style layout */}
-        <div className="grid grid-cols-12 gap-4 md:gap-6 items-center min-h-[80vh] py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-6 items-center min-h-[80vh]">
           
-          {/* Left column - Main content */}
-          <div className="col-span-12 lg:col-span-7 space-y-8">
+          {/* Left column - Main Typography */}
+          <div className="col-span-1 lg:col-span-6 space-y-8 z-20">
             
-            {/* Badge */}
-            <div className="inline-flex items-center gap-3 animate-fade-in-up">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-              </span>
-              <span className="text-xs text-muted-foreground uppercase tracking-[0.2em]">
-                Disponibles para proyectos
+            {/* Glowing Badge */}
+            <div className="inline-flex items-center gap-3 animate-fade-in-up bg-zinc-900/50 border border-white/10 backdrop-blur-md px-4 py-2 rounded-full shadow-[0_0_20px_rgba(0,102,255,0.2)]">
+              <Sparkles className="w-4 h-4 text-primary animate-pulse" />
+              <span className="text-xs text-zinc-300 font-semibold uppercase tracking-[0.2em]">
+                Diseño & Fabricación Premium
               </span>
             </div>
 
             {/* Headline */}
             <div className="space-y-2 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[0.9]">
-                <span className="block text-foreground">Creamos</span>
-                <span className="block text-foreground">impacto</span>
-                <span className="block text-primary">visual</span>
+              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-bold tracking-tight leading-[1.05]">
+                <span className="block text-white drop-shadow-md">Creamos</span>
+                <span className="block text-white drop-shadow-md">impacto</span>
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary to-cyan-400 filter drop-shadow-[0_0_15px_rgba(0,102,255,0.8)] pb-2">
+                  visual.
+                </span>
               </h1>
             </div>
 
             {/* Description */}
-            <p className="text-lg text-muted-foreground max-w-md leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-              Transformamos ideas en experiencias visuales memorables. 
-              Especialistas en publicidad exterior y rotulación desde hace más de 20 años.
+            <p className="text-lg md:text-xl text-zinc-400 max-w-lg leading-relaxed animate-fade-in-up font-light" style={{ animationDelay: '0.2s' }}>
+              Transformamos marcas en experiencias visuales memorables. Especialistas en <strong className="text-white font-medium">publicidad exterior, letreros 3D y rotulación</strong> con más de 20 años destacando en el mercado.
             </p>
 
             {/* CTA */}
@@ -83,10 +73,10 @@ export function Hero() {
               <Button 
                 asChild 
                 size="lg" 
-                className="bg-primary text-white hover:bg-primary/90 rounded-full px-8 h-14 text-base font-medium group"
+                className="bg-primary text-white hover:bg-primary/90 hover:shadow-[0_0_30px_rgba(0,102,255,0.6)] rounded-full px-8 h-14 text-base font-bold transition-all duration-300 group border border-primary/50"
               >
                 <Link href="#contacto">
-                  Comenzar proyecto
+                  Cotizar mi proyecto
                   <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
@@ -94,65 +84,89 @@ export function Hero() {
                 asChild 
                 variant="outline" 
                 size="lg" 
-                className="rounded-full px-8 h-14 text-base border-border hover:bg-card hover:border-primary/50"
+                className="rounded-full px-8 h-14 text-base text-white border-white/20 bg-white/5 backdrop-blur-md hover:bg-white/10 hover:border-white/40 transition-all duration-300"
               >
                 <Link href="#portafolio">
-                  Ver trabajos
+                  Explorar trabajos
                 </Link>
               </Button>
             </div>
           </div>
 
-          {/* Right column - Feature cards */}
-          <div className="col-span-12 lg:col-span-5 grid grid-cols-2 gap-4 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+          {/* Right column - Spectacular Visual Collage */}
+          <div className="col-span-1 lg:col-span-6 relative h-[500px] md:h-[600px] lg:h-[700px] w-full animate-fade-in-up flex justify-center items-center mt-10 lg:mt-0" style={{ animationDelay: '0.4s' }}>
             
-            {/* Card 1 - Large */}
-            <div className="col-span-2 group relative bg-card/80 backdrop-blur-sm border border-border rounded-3xl p-8 hover:border-primary/40 transition-all duration-300">
-              <div className="flex items-start justify-between mb-6">
-                <span className="text-6xl md:text-7xl font-bold text-primary">20+</span>
-                <div className="w-3 h-3 rounded-full bg-primary/20 group-hover:bg-primary transition-colors" />
+            {/* Ambient Glow behind images */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-cyan-500/20 rounded-full blur-[80px] scale-75 animate-pulse-glow" />
+
+            {/* Main Center Image */}
+            <div 
+              className="absolute z-20 w-[65%] md:w-[55%] aspect-[4/5] rounded-[2rem] overflow-hidden border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.5),0_0_30px_rgba(0,102,255,0.3)] animate-float" 
+              style={{ animationDuration: '6s' }}
+            >
+              <Image 
+                src="/images/proyecto-letrero-luminoso-1.jpg" 
+                alt="Letrero Luminoso Destacado" 
+                fill 
+                className="object-cover" 
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+              <div className="absolute bottom-0 left-0 p-6 w-full">
+                <div className="bg-primary/20 border border-primary/50 backdrop-blur-md text-white text-xs font-bold px-3 py-1 rounded-full inline-block mb-2 shadow-[0_0_10px_rgba(0,102,255,0.5)]">
+                  OBRA DESTACADA
+                </div>
+                <h3 className="text-white text-xl md:text-2xl font-bold leading-tight">Avisos Luminosos 3D</h3>
               </div>
-              <p className="text-muted-foreground">
-                Años creando soluciones publicitarias que destacan y perduran
-              </p>
+            </div>
+            
+            {/* Back Right Image */}
+            <div 
+              className="absolute z-10 w-[50%] md:w-[45%] aspect-square rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl opacity-90 animate-float translate-x-[45%] -translate-y-[15%] rotate-6" 
+              style={{ animationDuration: '8s', animationDelay: '1s' }}
+            >
+              <Image 
+                src="/images/proyecto-aviso-nube.jpg" 
+                alt="Proyecto Creativo Anleon" 
+                fill 
+                className="object-cover" 
+              />
+              <div className="absolute inset-0 bg-[#0066ff]/20 mix-blend-overlay" />
             </div>
 
-            {/* Card 2 */}
-            <div className="group relative bg-card/80 backdrop-blur-sm border border-border rounded-3xl p-6 hover:border-primary/40 transition-all duration-300">
-              <span className="text-4xl font-bold text-foreground block mb-3">500+</span>
-              <p className="text-sm text-muted-foreground">Proyectos exitosos</p>
+            {/* Front Left Floating Badge/Image */}
+            <div 
+              className="absolute z-30 w-[45%] md:w-[40%] aspect-[4/3] rounded-[1.5rem] overflow-hidden border border-white/20 shadow-[0_15px_35px_rgba(0,0,0,0.6)] animate-float -translate-x-[50%] translate-y-[30%] -rotate-3" 
+              style={{ animationDuration: '7s', animationDelay: '2s' }}
+            >
+              <Image 
+                src="/images/proyecto-banner-gran-formato.jpg" 
+                alt="Impresión en Gran Formato" 
+                fill 
+                className="object-cover" 
+              />
+              <div className="absolute inset-0 bg-black/30 backdrop-blur-[2px]" />
+              <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
+                <div className="w-12 h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center mb-2 border border-white/30 shadow-[0_0_15px_rgba(255,255,255,0.2)]">
+                  <span className="text-white font-bold text-xl">20+</span>
+                </div>
+                <span className="text-white font-semibold text-sm drop-shadow-md">Años de Experiencia</span>
+              </div>
             </div>
 
-            {/* Card 3 */}
-            <div className="group relative bg-card/80 backdrop-blur-sm border border-border rounded-3xl p-6 hover:border-primary/40 transition-all duration-300">
-              <span className="text-4xl font-bold text-foreground block mb-3">100%</span>
-              <p className="text-sm text-muted-foreground">Calidad garantizada</p>
-            </div>
-
-            {/* Services row */}
-            <div className="col-span-2 flex flex-wrap gap-2">
-              {["Neón LED", "Avisos", "Litografía", "Gran Formato"].map((service) => (
-                <span 
-                  key={service}
-                  className="px-4 py-2 text-xs font-medium text-muted-foreground bg-card border border-border rounded-full hover:border-primary/40 hover:text-foreground transition-colors cursor-default"
-                >
-                  {service}
-                </span>
-              ))}
-            </div>
           </div>
         </div>
 
         {/* Bottom bar */}
-        <div className="absolute bottom-8 left-6 right-6 flex items-center justify-between text-sm text-muted-foreground animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+        <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between text-sm text-zinc-500 animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
           <div className="hidden md:flex items-center gap-6">
-            <span>Medellín, Colombia</span>
-            <span className="w-1 h-1 rounded-full bg-primary" />
-            <span>info@anleon.com</span>
+            <span className="font-mono uppercase tracking-wider text-xs">Medellín, Colombia</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_8px_rgba(0,102,255,0.8)]" />
+            <span className="font-mono uppercase tracking-wider text-xs hover:text-white transition-colors cursor-pointer">info@anleon.com</span>
           </div>
-          <div className="flex items-center gap-2">
-            <span className="w-8 h-px bg-border" />
-            <span className="text-xs tracking-wider">SCROLL</span>
+          <div className="flex items-center gap-3">
+            <span className="w-12 h-px bg-zinc-700" />
+            <span className="text-[10px] tracking-[0.3em] font-bold text-zinc-400">SCROLL</span>
           </div>
         </div>
       </div>

@@ -1,6 +1,7 @@
 "use client"
 
 import { Star, Quote } from "lucide-react"
+import React from "react"
 
 const testimonials = [
   {
@@ -21,66 +22,83 @@ const testimonials = [
     role: "Director de Marketing",
     rating: 5,
   },
+  {
+    content: "El diseño y la instalación de los vinilos decorativos fueron perfectos. Transformaron por completo el ambiente de nuestra tienda.",
+    name: "Camila Sánchez",
+    role: "Emprendedora",
+    rating: 5,
+  },
+  {
+    content: "Su atención al detalle es impresionante. Nos ayudaron desde el concepto hasta la instalación final del aviso luminoso.",
+    name: "Roberto Gómez",
+    role: "Gerente de Operaciones",
+    rating: 5,
+  }
 ]
 
 export function Testimonials() {
+  // Duplicate array to create a seamless infinite loop
+  const duplicatedTestimonials = [...testimonials, ...testimonials]
+
   return (
-    <section id="testimonios" className="relative py-32 bg-foreground overflow-hidden">
-      {/* Neon accent lines */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+    <section id="testimonios" className="relative py-32 bg-[#050505] overflow-hidden">
+      {/* Dynamic Background */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent shadow-[0_0_20px_rgba(0,102,255,0.8)]" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] md:w-[600px] md:h-[600px] bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
       
-      {/* Background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[150px]" />
-      
-      <div className="relative max-w-7xl mx-auto px-6">
+      <div className="relative max-w-7xl mx-auto px-4 md:px-6 z-10">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="inline-block text-primary font-medium mb-4 tracking-wide text-sm uppercase">Testimonios</span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-background">
-            Lo que dicen nuestros
-            <span className="text-primary"> clientes</span>
+        <div className="text-center max-w-3xl mx-auto mb-20">
+          <span className="inline-block text-primary font-bold mb-4 tracking-[0.2em] text-sm uppercase px-4 py-1.5 rounded-full border border-primary/30 bg-primary/10">
+            Voces de Éxito
+          </span>
+          <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 text-white drop-shadow-lg">
+            El Impacto de <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-cyan-400">Nuestro Trabajo</span>
           </h2>
+          <p className="text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto font-light">
+            No solo fabricamos anuncios, construimos la imagen de tu marca. Esto es lo que opinan quienes ya confiaron en nosotros.
+          </p>
         </div>
+      </div>
         
-        {/* Testimonials Grid */}
-        <div className="grid md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
+      {/* Infinite Scrolling Marquee */}
+      <div className="relative w-full pb-10 flex overflow-hidden mask-edges">
+        {/* Left/Right fading edges */}
+        <div className="absolute top-0 bottom-0 left-0 w-12 md:w-32 bg-gradient-to-r from-[#050505] to-transparent z-10 pointer-events-none" />
+        <div className="absolute top-0 bottom-0 right-0 w-12 md:w-32 bg-gradient-to-l from-[#050505] to-transparent z-10 pointer-events-none" />
+
+        <div className="animate-marquee hover:[animation-play-state:paused] flex gap-6 md:gap-8 px-4">
+          {duplicatedTestimonials.map((testimonial, index) => (
             <div 
               key={index}
-              className="group relative p-8 bg-background border border-border rounded-2xl card-hover overflow-hidden"
+              className="w-[300px] md:w-[400px] shrink-0 p-8 bg-zinc-900/40 backdrop-blur-md border border-white/5 rounded-3xl hover:border-primary/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(0,102,255,0.3)] group relative"
             >
-              {/* Quote icon */}
-              <div className="absolute top-6 right-6 opacity-10 group-hover:opacity-20 transition-opacity">
-                <Quote className="w-12 h-12 text-primary" />
+              <div className="absolute -top-4 -right-4 w-20 h-20 bg-primary/10 rounded-full blur-2xl group-hover:bg-primary/20 transition-all" />
+              
+              <Quote className="w-10 h-10 text-primary/40 mb-6 group-hover:text-primary transition-colors" />
+              
+              <div className="flex gap-1 mb-6">
+                {[...Array(testimonial.rating)].map((_, i) => (
+                  <Star key={i} className="w-5 h-5 text-yellow-500 fill-yellow-500 drop-shadow-[0_0_8px_rgba(234,179,8,0.5)]" />
+                ))}
               </div>
               
-              {/* Hover glow */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              <p className="text-zinc-300 text-lg leading-relaxed mb-8 font-light italic">
+                "{testimonial.content}"
+              </p>
               
-              <div className="relative">
-                {/* Stars */}
-                <div className="flex gap-1 mb-6">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 text-primary fill-primary" />
-                  ))}
-                </div>
-                
-                {/* Content */}
-                <p className="text-muted-foreground leading-relaxed mb-8">
-                  &quot;{testimonial.content}&quot;
-                </p>
-                
-                {/* Author */}
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-primary/10 border border-primary/20 rounded-full flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-all">
-                    <span className="text-primary font-semibold group-hover:text-white transition-colors">
-                      {testimonial.name.split(" ").map(n => n[0]).join("")}
+              <div className="flex items-center gap-4 mt-auto pt-6 border-t border-white/10">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-cyan-500 p-[2px]">
+                  <div className="w-full h-full rounded-full bg-zinc-900 flex items-center justify-center">
+                    <span className="text-white font-bold text-lg">
+                      {testimonial.name.charAt(0)}
                     </span>
                   </div>
-                  <div>
-                    <div className="font-semibold group-hover:text-primary transition-colors">{testimonial.name}</div>
-                    <div className="text-sm text-muted-foreground">{testimonial.role}</div>
-                  </div>
+                </div>
+                <div>
+                  <h4 className="text-white font-semibold text-lg">{testimonial.name}</h4>
+                  <p className="text-primary text-sm font-medium">{testimonial.role}</p>
                 </div>
               </div>
             </div>

@@ -3,6 +3,8 @@ import { Hero } from "@/components/hero"
 import { About } from "@/components/about"
 import { Services } from "@/components/services"
 import { Portfolio } from "@/components/portfolio"
+import { BeforeAfter } from "@/components/before-after"
+import { VideoWorks } from "@/components/video-works"
 import { WhyUs } from "@/components/why-us"
 import { Pricing } from "@/components/pricing"
 import { Testimonials } from "@/components/testimonials"
@@ -19,6 +21,8 @@ export default function Home() {
       <About />
       <Services />
       <Portfolio />
+      <BeforeAfter />
+      <VideoWorks />
       <WhyUs />
       <Pricing />
       <Testimonials />
