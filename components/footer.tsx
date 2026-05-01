@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { ArrowUpRight, Zap } from "lucide-react"
 
 const footerLinks = [
@@ -39,8 +40,8 @@ export function Footer() {
           <div className="lg:col-span-1">
             <Link href="/" className="flex items-center gap-3 mb-6 group">
               <div className="relative">
-                <div className="w-11 h-11 bg-primary rounded-lg flex items-center justify-center group-hover:animate-pulse-glow transition-all">
-                  <span className="text-white font-bold text-xl">A</span>
+                <div className="w-12 h-12 flex items-center justify-center group-hover:animate-pulse-glow transition-all">
+                  <Image src="/logo.png" alt="Anleon Logo" width={48} height={48} className="object-contain w-full h-full" />
                 </div>
               </div>
               <div>
@@ -129,12 +130,17 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="py-6 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground">
-            {new Date().getFullYear()} Anleon Publicidad. Todos los derechos reservados.
+            &copy; {new Date().getFullYear()} Anleon Publicidad. Todos los derechos reservados.
           </p>
-          <p className="text-sm text-muted-foreground">
-            Desarrollado con <span className="text-primary">♥</span> por{" "}
-            <span className="text-primary font-medium hover:underline cursor-pointer">K&T CODE</span>
-          </p>
+          <a 
+            href="https://www.kytcode.lat" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="text-sm text-muted-foreground hover:text-white transition-colors flex items-center gap-1 group"
+          >
+            Desarrollado por K&T
+            <span className="text-white transition-transform group-hover:scale-110">♥</span>
+          </a>
         </div>
       </div>
     </footer>

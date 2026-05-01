@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
@@ -36,8 +37,8 @@ export function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
             <div className="relative">
-              <div className="w-11 h-11 bg-primary rounded-lg flex items-center justify-center group-hover:animate-pulse-glow transition-all">
-                <span className="text-white font-bold text-xl">A</span>
+              <div className="w-12 h-12 flex items-center justify-center group-hover:animate-pulse-glow transition-all">
+                <Image src="/logo.png" alt="Anleon Logo" width={48} height={48} className="object-contain w-full h-full" priority />
               </div>
               <div className="absolute -inset-1 bg-primary/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
