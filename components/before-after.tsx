@@ -42,7 +42,7 @@ export function BeforeAfter() {
             {/* Image After (Background - Dictates container height) */}
             <div className="relative w-full">
               <img 
-                src="/fachada2.jpg" 
+                src="/fachada2.webp" 
                 alt="Fachada después de la remodelación" 
                 className="w-full h-auto block pointer-events-none"
               />
@@ -57,7 +57,7 @@ export function BeforeAfter() {
               style={{ clipPath: `polygon(0 0, ${sliderPosition}% 0, ${sliderPosition}% 100%, 0 100%)` }}
             >
               <img 
-                src="/fachada1.jpg" 
+                src="/fachada1.webp" 
                 alt="Fachada antes de la remodelación" 
                 className="absolute inset-0 w-full h-full object-fill pointer-events-none"
               />

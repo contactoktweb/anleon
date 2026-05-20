@@ -10,21 +10,21 @@ const posts = [
     excerpt: "Descubre cómo las nuevas tecnologías están revolucionando la fabricación de letreros de neón personalizados.",
     date: "25 Abr, 2026",
     category: "Tecnología",
-    image: "/images/news-neon-tech.png",
+    image: "/images/news-neon-tech.webp",
   },
   {
     title: "El Impacto del Gran Formato",
     excerpt: "Por qué la impresión a gran escala sigue siendo la mejor opción para captar la atención en espacios comerciales.",
     date: "18 Abr, 2026",
     category: "Consejos",
-    image: "/images/news-large-format.png",
+    image: "/images/news-large-format.webp",
   },
   {
     title: "Tendencias Publicidad Exterior 2026",
     excerpt: "Desde estéticas cyberpunk hasta la integración digital: lo que dominará las calles y fachadas este año.",
     date: "10 Abr, 2026",
     category: "Tendencias",
-    image: "/images/news-outdoor-trends.png",
+    image: "/images/news-outdoor-trends.webp",
   },
 ]
 

@@ -75,19 +75,9 @@ export function Hero() {
                 size="lg" 
                 className="bg-primary text-white hover:bg-primary/90 hover:shadow-[0_0_30px_rgba(0,102,255,0.6)] rounded-full px-8 h-14 text-base font-bold transition-all duration-300 group border border-primary/50"
               >
-                <Link href="#contacto">
-                  Cotizar mi proyecto
-                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </Button>
-              <Button 
-                asChild 
-                variant="outline" 
-                size="lg" 
-                className="rounded-full px-8 h-14 text-base text-white border-white/20 bg-white/5 backdrop-blur-md hover:bg-white/10 hover:border-white/40 transition-all duration-300"
-              >
                 <Link href="#portafolio">
                   Explorar trabajos
+                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
             </div>
@@ -105,7 +95,7 @@ export function Hero() {
               style={{ animationDuration: '6s' }}
             >
               <Image 
-                src="/images/proyecto-letrero-luminoso-1.jpg" 
+                src="/images/proyecto-letrero-luminoso-1.webp" 
                 alt="Letrero Luminoso Destacado" 
                 fill 
                 className="object-cover" 
@@ -126,7 +116,7 @@ export function Hero() {
               style={{ animationDuration: '8s', animationDelay: '1s' }}
             >
               <Image 
-                src="/images/proyecto-aviso-nube.jpg" 
+                src="/images/proyecto-aviso-nube.webp" 
                 alt="Proyecto Creativo Anleon" 
                 fill 
                 className="object-cover" 
@@ -140,7 +130,7 @@ export function Hero() {
               style={{ animationDuration: '7s', animationDelay: '2s' }}
             >
               <Image 
-                src="/images/proyecto-banner-gran-formato.jpg" 
+                src="/images/proyecto-banner-gran-formato.webp" 
                 alt="Impresión en Gran Formato" 
                 fill 
                 className="object-cover" 

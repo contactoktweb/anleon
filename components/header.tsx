@@ -38,7 +38,7 @@ export function Header() {
           <Link href="/" className="flex items-center gap-3 group">
             <div className="relative">
               <div className="w-12 h-12 flex items-center justify-center group-hover:animate-pulse-glow transition-all">
-                <Image src="/logo.png" alt="Anleon Logo" width={48} height={48} className="object-contain w-full h-full" priority />
+                <Image src="/logo.webp" alt="Anleon Logo" width={48} height={48} className="object-contain w-full h-full" priority />
               </div>
               <div className="absolute -inset-1 bg-primary/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>

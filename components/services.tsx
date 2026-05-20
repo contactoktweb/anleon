@@ -1,101 +1,137 @@
 "use client"
 
 import { useState } from "react"
-import { ArrowUpRight, Box, Lightbulb, FileText, Maximize2, Signpost, Zap } from "lucide-react"
+import { ArrowUpRight, Sparkles } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 
 const categories = [
   { id: "avisos", label: "Avisos" },
   { id: "litografia", label: "Litografía" },
-  { id: "gran-formato", label: "Gran Formato" }
+  { id: "gran-formato", label: "Gran Formato" },
+  { id: "otros", label: "Otros" }
 ]
 
 const services = [
   // AVISOS
   {
-    icon: Box,
-    title: "Avisos 3D",
-    description: "Letras y logos volumétricos con acabados premium que destacan tu marca.",
+    title: "Avisos en 3D",
+    description: "Letras y logos volumétricos en acrílico, metal o madera con acabados premium.",
     category: "avisos",
-    number: "01",
-    featured: true,
-    subservices: [
-      "Avisos en 3D",
-      "Nubes Encantoneradas",
-      "Avisos Exteriores con Base Alocubond"
-    ]
+    image: "/avisos/Letra_SinLuz.jpg.webp",
   },
   {
-    icon: Lightbulb,
-    title: "Avisos Luminosos",
-    description: "Iluminación LED de alta eficiencia para máxima visibilidad 24/7.",
+    title: "Nubes Encantoneradas",
+    description: "Avisos con siluetas personalizadas, cantos de aluminio iluminados y luz LED.",
     category: "avisos",
-    number: "02",
-    featured: false,
-    subservices: [
-      "Caja de Luz con Apliques",
-      "Doble Cara con Luz",
-      "Avisos luminosos estándar"
-    ]
+    image: "/avisos/IMG-20230925-WA0077.jpg.webp",
   },
   {
-    icon: Zap,
+    title: "Caja de Luz con Apliques",
+    description: "Cajas iluminadas con acrílico y apliques en relieve para una mayor tridimensionalidad.",
+    category: "avisos",
+    image: "/avisos/IMG_20230829_173014-300x225.jpg.webp",
+  },
+  {
+    title: "Doble Cara con Luz",
+    description: "Avisos salientes a doble cara con iluminación LED para locales comerciales.",
+    category: "avisos",
+    image: "/avisos/IMG-20221014-WA0104.jpg.webp",
+  },
+  {
+    title: "Avisos Exteriores con Base Alocubond",
+    description: "Letreros de alta durabilidad montados sobre paneles de aluminio compuesto.",
+    category: "avisos",
+    image: "/avisos/IMG-20220216-WA0102.jpg.webp",
+  },
+  {
     title: "Neón Flex",
-    description: "Letreros con efecto neón moderno, versátil y bajo consumo energético.",
+    description: "Diseños y frases personalizadas con iluminación neón de bajo consumo.",
     category: "avisos",
-    number: "03",
-    featured: false,
-    subservices: [
-      "Logos corporativos",
-      "Frases personalizadas",
-      "Diseños decorativos"
-    ]
+    image: "/images/news-neon-tech.webp",
   },
 
   // LITOGRAFIA
   {
-    icon: FileText,
-    title: "Litografía",
-    description: "Impresión de alta calidad para materiales corporativos y promocionales.",
+    title: "Talonarios",
+    description: "Talonarios membretados e impresos para facturas, recibos, comandas y cuentas de cobro.",
     category: "litografia",
-    number: "04",
-    featured: true,
-    subservices: [
-      "Litografía clásica",
-      "Talonarios",
-      "Plegables",
-      "Tarjetas",
-      "Volantes",
-      "Sellos"
-    ]
+    image: "/litografia/talonarios.webp",
+  },
+  {
+    title: "Plegables",
+    description: "Folletos plegables (dípticos, trípticos) de alta calidad para presentar tus productos o servicios.",
+    category: "litografia",
+    image: "/litografia/plegables.webp",
+  },
+  {
+    title: "Tarjetas",
+    description: "Tarjetas de presentación corporativas y personales con acabados premium y texturas especiales.",
+    category: "litografia",
+    image: "/litografia/tarjetas.webp",
+  },
+  {
+    title: "Volantes",
+    description: "Volantes y flyers publicitarios ideales para campañas masivas de promoción y eventos.",
+    category: "litografia",
+    image: "/litografia/volantes.webp",
+  },
+  {
+    title: "Sellos",
+    description: "Sellos automáticos y de madera totalmente personalizados para firmas y marcas corporativas.",
+    category: "litografia",
+    image: "/litografia/sellos.webp",
   },
 
   // GRAN FORMATO
   {
-    icon: Maximize2,
-    title: "Gran Formato",
-    description: "Vallas, murales y banners de gran escala con colores vibrantes.",
+    title: "Banner 10 y 13 oz",
+    description: "Lonas de gran resistencia para vallas, pancartas y avisos exteriores.",
     category: "gran-formato",
-    number: "05",
-    featured: true,
-    subservices: [
-      "Banner 10 y 13 oz",
-      "Arañas y estructuras con impresión",
-      "Vinilo Adhesivo"
-    ]
+    image: "/gran-formato/AnleonProductos-1-1024x576.webp",
   },
   {
-    icon: Signpost,
-    title: "Señalización",
-    description: "Sistemas de señalética profesional para espacios comerciales y de seguridad.",
+    title: "Arañas y Estructuras con Impresión",
+    description: "Portabanners tipo araña y soportes publicitarios móviles para ferias y locales.",
     category: "gran-formato",
-    number: "06",
-    featured: false,
-    subservices: [
-      "Avisos para empresa",
-      "Señalética industrial",
-      "Rutas de evacuación"
-    ]
+    image: "/gran-formato/aranas.webp",
+  },
+  {
+    title: "Vinilo Adhesivo",
+    description: "Vinilos impresos y de corte para decoración de vidrieras, paredes y vehículos.",
+    category: "gran-formato",
+    image: "/gran-formato/AnleonProductos-2-1024x576.webp",
+  },
+  {
+    title: "Avisos para Empresa",
+    description: "Placas corporativas y letreros comerciales de alta calidad para oficinas y locales.",
+    category: "gran-formato",
+    image: "/gran-formato/avisos_empresa.webp",
+  },
+  // OTROS
+  {
+    title: "Tarjetas con Filtro UV",
+    description: "Tarjetas de presentación con brillo UV parcial para resaltar logotipos y detalles especiales.",
+    category: "otros",
+    image: "/otros/tarjetas_uv.webp",
+  },
+  {
+    title: "Volantes por 1.000",
+    description: "Paquete de volantes impresos a full color en papel propalcote, ideales para campañas publicitarias.",
+    category: "otros",
+    image: "/otros/volantes_mil.webp",
+  },
+  {
+    title: "Cartas de menú",
+    description: "Diseño e impresión de menús y cartas para restaurantes y cafeterías, resistentes y duraderos.",
+    category: "otros",
+    image: "/otros/cartas_menu.webp",
+  },
+  {
+    title: "Promocionales",
+    description: "Artículos publicitarios personalizados como bolígrafos, tazas, libretas y más para tu marca.",
+    category: "otros",
+    image: "/otros/promocionales.webp",
   }
 ]
 
@@ -155,101 +191,46 @@ export function Services() {
             <Link 
               key={service.title}
               href="#contacto"
-              className={`group relative overflow-hidden rounded-3xl transition-all duration-500 flex flex-col justify-between ${
-                service.featured 
-                  ? 'bg-background p-8 md:p-10 border border-primary/20 shadow-xl shadow-primary/5' 
-                  : 'bg-background/5 p-6 md:p-8 hover:bg-background border border-background/5 hover:border-primary/20'
-              }`}
+              className="group relative overflow-hidden rounded-3xl transition-all duration-500 flex flex-col justify-between bg-background/5 border border-background/5 hover:border-primary/20 hover:bg-background hover:shadow-2xl hover:shadow-primary/5"
             >
               <div className="relative h-full flex flex-col">
-                {/* Icon */}
-                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-all duration-300 ${
-                  service.featured
-                    ? 'bg-primary text-foreground group-hover:animate-pulse-glow'
-                    : 'bg-background/10 text-background group-hover:bg-primary group-hover:text-foreground'
-                }`}>
-                  <service.icon className="w-6 h-6" />
+                {/* Image Container */}
+                <div className="relative aspect-[4/3] w-full overflow-hidden bg-black/10">
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    fill
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
+                  {/* Category overlay */}
+                  <div className="absolute top-4 left-4 z-10">
+                    <span className="px-3 py-1.5 bg-black/60 backdrop-blur-md border border-white/10 rounded-full text-xs text-white font-medium shadow-sm uppercase tracking-wider">
+                      {categories.find(c => c.id === service.category)?.label || service.category}
+                    </span>
+                  </div>
                 </div>
-                
-                {/* Content */}
-                <div className="flex-grow">
-                  <h3 className={`text-xl md:text-2xl font-semibold mb-3 transition-colors ${
-                    service.featured 
-                      ? 'text-foreground group-hover:text-primary' 
-                      : 'text-background group-hover:text-foreground'
-                  }`}>
-                    {service.title}
-                  </h3>
-                  <p className={`text-sm md:text-base leading-relaxed transition-colors ${
-                    service.featured 
-                      ? 'text-muted-foreground' 
-                      : 'text-background/60 group-hover:text-muted-foreground'
-                  }`}>
-                    {service.description}
-                  </p>
 
-                  {/* Subservices List */}
-                  {service.subservices && (
-                    <ul className={`mt-6 space-y-2.5 border-t pt-6 ${
-                      service.featured 
-                        ? 'border-border/30' 
-                        : 'border-background/10'
-                    }`}>
-                      {service.subservices.map((sub, idx) => (
-                        <li key={idx} className="flex items-center gap-2.5 text-xs">
-                          <span className={`w-1.5 h-1.5 rounded-full ${
-                            service.featured ? 'bg-primary' : 'bg-primary/60 group-hover:bg-primary'
-                          }`} />
-                          <span className={
-                            service.featured 
-                              ? 'text-muted-foreground' 
-                              : 'text-background/60 group-hover:text-muted-foreground'
-                          }>
-                            {sub}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-                
-                {/* Arrow */}
-                <div className={`mt-6 flex items-center gap-2 transition-all duration-300 ${
-                  service.featured 
-                    ? 'text-primary' 
-                    : 'text-background/40 group-hover:text-primary'
-                }`}>
-                  <span className="text-sm font-medium">Ver más</span>
-                  <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                {/* Content */}
+                <div className="p-6 md:p-8 flex-grow flex flex-col justify-between">
+                  <div>
+                    <h3 className="text-xl md:text-2xl font-bold mb-3 text-background group-hover:text-foreground transition-colors">
+                      {service.title}
+                    </h3>
+                    <p className="text-sm md:text-base leading-relaxed text-background/70 group-hover:text-muted-foreground transition-colors">
+                      {service.description}
+                    </p>
+                  </div>
+
+                  {/* Arrow CTA */}
+                  <div className="mt-6 pt-6 border-t border-background/10 group-hover:border-foreground/10 flex items-center gap-2 text-background/40 group-hover:text-primary transition-all duration-300">
+                    <span className="text-sm font-semibold">Cotizar ahora</span>
+                    <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  </div>
                 </div>
               </div>
-              
-              {/* Hover glow for featured cards */}
-              {service.featured && (
-                <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
-              )}
             </Link>
           ))}
-        </div>
-        
-        {/* Bottom CTA */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 p-8 md:p-10 bg-background rounded-3xl">
-          <div className="flex items-center gap-4">
-            <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center">
-              <span className="text-2xl font-bold text-primary">?</span>
-            </div>
-            <div>
-              <h3 className="text-xl font-bold text-foreground">¿No encuentras lo que buscas?</h3>
-              <p className="text-muted-foreground">Contáctanos para soluciones personalizadas</p>
-            </div>
-          </div>
-          <Link 
-            href="#contacto"
-            className="neon-button inline-flex items-center gap-2 px-8 py-4 bg-primary text-foreground rounded-xl font-medium hover:bg-primary/90 transition-all whitespace-nowrap"
-          >
-            Cotizar proyecto
-            <ArrowUpRight className="w-4 h-4" />
-          </Link>
         </div>
       </div>
     </section>

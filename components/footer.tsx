@@ -2,7 +2,24 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowUpRight, Zap } from "lucide-react"
+import { ArrowUpRight, Facebook, Instagram } from "lucide-react"
+
+const Tiktok = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
+    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+  </svg>
+)
 
 const footerLinks = [
   { label: "Inicio", href: "#inicio" },
@@ -22,9 +39,9 @@ const services = [
 ]
 
 const socials = [
-  { label: "Facebook", href: "#" },
-  { label: "Instagram", href: "#" },
-  { label: "WhatsApp", href: "#" },
+  { label: "Facebook", href: "#", Icon: Facebook },
+  { label: "Instagram", href: "#", Icon: Instagram },
+  { label: "TikTok", href: "#", Icon: Tiktok },
 ]
 
 export function Footer() {
@@ -41,7 +58,7 @@ export function Footer() {
             <Link href="/" className="flex items-center gap-3 mb-6 group">
               <div className="relative">
                 <div className="w-12 h-12 flex items-center justify-center group-hover:animate-pulse-glow transition-all">
-                  <Image src="/logo.png" alt="Anleon Logo" width={48} height={48} className="object-contain w-full h-full" />
+                  <Image src="/logo.webp" alt="Anleon Logo" width={48} height={48} className="object-contain w-full h-full" />
                 </div>
               </div>
               <div>
@@ -60,7 +77,7 @@ export function Footer() {
                   className="w-10 h-10 bg-secondary border border-border rounded-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-all"
                   aria-label={social.label}
                 >
-                  <ArrowUpRight className="w-4 h-4" />
+                  <social.Icon className="w-4 h-4" />
                 </a>
               ))}
             </div>
@@ -95,14 +112,8 @@ export function Footer() {
             </h4>
             <ul className="space-y-3">
               {services.map((service) => (
-                <li key={service}>
-                  <Link 
-                    href="#servicios" 
-                    className="text-muted-foreground hover:text-primary transition-colors text-sm inline-flex items-center gap-1 group"
-                  >
-                    {service}
-                    <ArrowUpRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
-                  </Link>
+                <li key={service} className="text-muted-foreground text-sm">
+                  {service}
                 </li>
               ))}
             </ul>
@@ -117,13 +128,6 @@ export function Footer() {
             <p className="text-muted-foreground text-sm leading-relaxed mb-6">
               Contáctanos y hagamos realidad tu proyecto.
             </p>
-            <Link
-              href="#contacto"
-              className="neon-button inline-flex items-center gap-2 px-6 py-3 bg-primary text-white rounded-xl text-sm font-medium hover:bg-primary/90 transition-all"
-            >
-              <Zap className="w-4 h-4" />
-              Cotizar ahora
-            </Link>
           </div>
         </div>
         
