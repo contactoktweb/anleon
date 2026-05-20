@@ -11,7 +11,6 @@ export function BeforeAfter() {
   const titleRef = useRef<HTMLHeadingElement>(null)
   const [titleVisible, setTitleVisible] = useState(false)
 
-  // ── True spider-web animated background ─────────────────────────────
   const initCanvas = useCallback(() => {
     const canvas = canvasRef.current
     if (!canvas) return
@@ -19,18 +18,18 @@ export function BeforeAfter() {
     if (!ctx) return
 
     const resize = () => {
-      canvas.width  = canvas.offsetWidth
+      canvas.width = canvas.offsetWidth
       canvas.height = canvas.offsetHeight
     }
     resize()
     window.addEventListener("resize", resize)
 
     const NODE_COUNT = 60
-    const MAX_DIST   = 380 // Large distance = big, wide irregular shapes
-    let   animId: number
+    const MAX_DIST = 380 // Large distance = big, wide irregular shapes
+    let animId: number
 
-    const CYAN = { r: 6,  g: 182, b: 212 }   // #06b6d4
-    const BLUE = { r: 0,  g: 102, b: 255 }   // #0066ff
+    const CYAN = { r: 6, g: 182, b: 212 }   // #06b6d4
+    const BLUE = { r: 0, g: 102, b: 255 }   // #0066ff
 
     type Node = { x: number; y: number; vx: number; vy: number }
     // Initialize nodes spreading across potentially wider screens
@@ -48,27 +47,27 @@ export function BeforeAfter() {
       for (const n of nodes) {
         n.x += n.vx
         n.y += n.vy
-        
+
         // Bounce off edges with a larger margin so they don't bunch up visibly
-        if (n.x < -100 || n.x > canvas.width + 100)  n.vx *= -1
+        if (n.x < -100 || n.x > canvas.width + 100) n.vx *= -1
         if (n.y < -100 || n.y > canvas.height + 100) n.vy *= -1
       }
 
       // Draw irregular jagged connections (edges)
       ctx.lineWidth = 0.7 // balanced line width
-      
+
       for (let i = 0; i < nodes.length; i++) {
         for (let j = i + 1; j < nodes.length; j++) {
           const dx = nodes[i].x - nodes[j].x
           const dy = nodes[i].y - nodes[j].y
           const distSq = dx * dx + dy * dy
-          
+
           if (distSq < MAX_DIST * MAX_DIST) {
             const dist = Math.sqrt(distSq)
             // Balanced fade out
             const alpha = (1 - dist / MAX_DIST) * 0.35
             const color = (i + j) % 3 === 0 ? BLUE : CYAN
-            
+
             ctx.beginPath()
             ctx.moveTo(nodes[i].x, nodes[i].y)
             ctx.lineTo(nodes[j].x, nodes[j].y)
@@ -140,16 +139,16 @@ export function BeforeAfter() {
             <div className="absolute top-0 right-0 w-2.5 h-2.5 border-t-2 border-r-2 border-cyan-400 group-hover:w-3.5 group-hover:h-3.5 transition-all duration-300" />
             <div className="absolute bottom-0 left-0 w-2.5 h-2.5 border-b-2 border-l-2 border-cyan-400 group-hover:w-3.5 group-hover:h-3.5 transition-all duration-300" />
             <div className="absolute bottom-0 right-0 w-2.5 h-2.5 border-b-2 border-r-2 border-primary group-hover:w-3.5 group-hover:h-3.5 transition-all duration-300" />
-            
+
             {/* Cosmic shine */}
             <div className="absolute inset-0 w-[200%] h-full bg-gradient-to-r from-transparent via-cyan-500/10 to-transparent -translate-x-full group-hover:animate-cosmic-shine" />
-            
+
             {/* Blinking orbital dot */}
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500 shadow-[0_0_8px_#06b6d4]"></span>
             </span>
-            
+
             <Sparkles className="w-3.5 h-3.5 text-primary animate-pulse" />
             <span className="text-xs text-zinc-600 font-semibold uppercase tracking-[0.2em] relative z-10">
               Antes & Después
@@ -180,7 +179,7 @@ export function BeforeAfter() {
         </div>
 
         <div className="max-w-5xl mx-auto rounded-2xl overflow-hidden shadow-2xl relative select-none group border border-zinc-200">
-          <div 
+          <div
             ref={containerRef}
             className="relative w-full overflow-hidden cursor-ew-resize"
             onMouseMove={onMouseMove}
@@ -188,9 +187,9 @@ export function BeforeAfter() {
           >
             {/* Image After (Background - Dictates container height) */}
             <div className="relative w-full">
-              <img 
-                src="/fachada2.webp" 
-                alt="Fachada después de la remodelación" 
+              <img
+                src="/fachada2.webp"
+                alt="Fachada después de la remodelación"
                 className="w-full h-auto block pointer-events-none"
               />
               <div className="absolute top-4 right-4 bg-black/70 text-white px-3 py-1.5 rounded-full text-sm font-medium backdrop-blur-md shadow-sm z-10">
@@ -199,13 +198,13 @@ export function BeforeAfter() {
             </div>
 
             {/* Image Before (Foreground, clipped) */}
-            <div 
+            <div
               className="absolute inset-0 w-full h-full"
               style={{ clipPath: `polygon(0 0, ${sliderPosition}% 0, ${sliderPosition}% 100%, 0 100%)` }}
             >
-              <img 
-                src="/fachada1.webp" 
-                alt="Fachada antes de la remodelación" 
+              <img
+                src="/fachada1.webp"
+                alt="Fachada antes de la remodelación"
                 className="absolute inset-0 w-full h-full object-fill pointer-events-none"
               />
               <div className="absolute top-4 left-4 bg-black/70 text-white px-3 py-1.5 rounded-full text-sm font-medium backdrop-blur-md shadow-sm">
@@ -214,7 +213,7 @@ export function BeforeAfter() {
             </div>
 
             {/* Slider Handle Divider */}
-            <div 
+            <div
               className="absolute top-0 bottom-0 w-1 bg-white cursor-ew-resize shadow-[0_0_10px_rgba(0,0,0,0.5)]"
               style={{ left: `calc(${sliderPosition}% - 2px)` }}
             >
