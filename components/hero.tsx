@@ -134,7 +134,7 @@ export function Hero() {
               <div className="absolute inset-0 bg-[#0066ff]/20 mix-blend-overlay" />
             </div>
 
-            {/* Front Left Floating Badge/Image */}
+            {/* Front Left Floating Image */}
             <div 
               className="absolute z-30 w-[45%] md:w-[40%] aspect-[4/3] rounded-[1.5rem] overflow-hidden border border-white/20 shadow-[0_15px_35px_rgba(0,0,0,0.6)] animate-float -translate-x-[50%] translate-y-[30%] -rotate-3" 
               style={{ animationDuration: '7s', animationDelay: '2s' }}
@@ -145,13 +145,6 @@ export function Hero() {
                 fill 
                 className="object-cover" 
               />
-              <div className="absolute inset-0 bg-black/30 backdrop-blur-[2px]" />
-              <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
-                <div className="w-12 h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center mb-2 border border-white/30 shadow-[0_0_15px_rgba(255,255,255,0.2)]">
-                  <span className="text-white font-bold text-xl">20+</span>
-                </div>
-                <span className="text-white font-semibold text-sm drop-shadow-md">Años de Experiencia</span>
-              </div>
             </div>
 
           </div>

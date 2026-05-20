@@ -6,11 +6,7 @@ import { Portfolio } from "@/components/portfolio"
 import { BeforeAfter } from "@/components/before-after"
 import { VideoWorks } from "@/components/video-works"
 import { WhyUs } from "@/components/why-us"
-import { Pricing } from "@/components/pricing"
-import { Testimonials } from "@/components/testimonials"
-import { FAQ } from "@/components/faq"
 import { Contact } from "@/components/contact"
-import { Blog } from "@/components/blog"
 import { Footer } from "@/components/footer"
 
 export default function Home() {
@@ -24,11 +20,7 @@ export default function Home() {
       <BeforeAfter />
       <VideoWorks />
       <WhyUs />
-      <Pricing />
-      <Testimonials />
-      <FAQ />
       <Contact />
-      <Blog />
       <Footer />
     </main>
   )

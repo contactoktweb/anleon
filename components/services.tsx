@@ -1,54 +1,109 @@
 "use client"
 
+import { useState } from "react"
 import { ArrowUpRight, Box, Lightbulb, FileText, Maximize2, Signpost, Zap } from "lucide-react"
 import Link from "next/link"
 
+const categories = [
+  { id: "avisos", label: "Avisos" },
+  { id: "litografia", label: "Litografía" },
+  { id: "gran-formato", label: "Gran Formato" }
+]
+
 const services = [
-  {
-    icon: Lightbulb,
-    title: "Avisos Luminosos",
-    description: "Iluminación LED de alta eficiencia para máxima visibilidad 24/7.",
-    number: "01",
-    featured: true,
-  },
+  // AVISOS
   {
     icon: Box,
     title: "Avisos 3D",
     description: "Letras y logos volumétricos con acabados premium que destacan tu marca.",
+    category: "avisos",
+    number: "01",
+    featured: true,
+    subservices: [
+      "Avisos en 3D",
+      "Nubes Encantoneradas",
+      "Avisos Exteriores con Base Alocubond"
+    ]
+  },
+  {
+    icon: Lightbulb,
+    title: "Avisos Luminosos",
+    description: "Iluminación LED de alta eficiencia para máxima visibilidad 24/7.",
+    category: "avisos",
     number: "02",
     featured: false,
+    subservices: [
+      "Caja de Luz con Apliques",
+      "Doble Cara con Luz",
+      "Avisos luminosos estándar"
+    ]
   },
   {
     icon: Zap,
     title: "Neón Flex",
     description: "Letreros con efecto neón moderno, versátil y bajo consumo energético.",
+    category: "avisos",
     number: "03",
-    featured: true,
-  },
-  {
-    icon: Maximize2,
-    title: "Gran Formato",
-    description: "Vallas, murales y banners de gran escala con colores vibrantes.",
-    number: "04",
     featured: false,
+    subservices: [
+      "Logos corporativos",
+      "Frases personalizadas",
+      "Diseños decorativos"
+    ]
   },
+
+  // LITOGRAFIA
   {
     icon: FileText,
     title: "Litografía",
     description: "Impresión de alta calidad para materiales corporativos y promocionales.",
+    category: "litografia",
+    number: "04",
+    featured: true,
+    subservices: [
+      "Litografía clásica",
+      "Talonarios",
+      "Plegables",
+      "Tarjetas",
+      "Volantes",
+      "Sellos"
+    ]
+  },
+
+  // GRAN FORMATO
+  {
+    icon: Maximize2,
+    title: "Gran Formato",
+    description: "Vallas, murales y banners de gran escala con colores vibrantes.",
+    category: "gran-formato",
     number: "05",
-    featured: false,
+    featured: true,
+    subservices: [
+      "Banner 10 y 13 oz",
+      "Arañas y estructuras con impresión",
+      "Vinilo Adhesivo"
+    ]
   },
   {
     icon: Signpost,
     title: "Señalización",
-    description: "Sistemas de señalética profesional para espacios comerciales.",
+    description: "Sistemas de señalética profesional para espacios comerciales y de seguridad.",
+    category: "gran-formato",
     number: "06",
     featured: false,
-  },
+    subservices: [
+      "Avisos para empresa",
+      "Señalética industrial",
+      "Rutas de evacuación"
+    ]
+  }
 ]
 
 export function Services() {
+  const [activeTab, setActiveTab] = useState("avisos")
+
+  const filteredServices = services.filter(service => service.category === activeTab)
+
   return (
     <section id="servicios" className="relative py-32 bg-foreground overflow-hidden">
       {/* This is a LIGHT section - inverted colors */}
@@ -61,7 +116,7 @@ export function Services() {
       
       <div className="relative max-w-7xl mx-auto px-6">
         {/* Header with unique layout */}
-        <div className="grid lg:grid-cols-12 gap-8 mb-20">
+        <div className="grid lg:grid-cols-12 gap-8 mb-16">
           <div className="lg:col-span-7">
             <span className="inline-block text-primary font-medium mb-4 tracking-wide text-sm uppercase">Servicios</span>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-background">
@@ -76,28 +131,36 @@ export function Services() {
             </p>
           </div>
         </div>
+
+        {/* Tab Selector */}
+        <div className="flex flex-wrap justify-start gap-3 mb-16 border-b border-background/10 pb-6">
+          {categories.map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => setActiveTab(cat.id)}
+              className={`px-6 py-3 rounded-xl text-sm font-semibold uppercase tracking-wider transition-all duration-300 ${
+                activeTab === cat.id
+                  ? "bg-primary text-foreground shadow-lg shadow-primary/20 scale-105"
+                  : "bg-background/5 text-background hover:bg-background/10 hover:scale-102"
+              }`}
+            >
+              {cat.label}
+            </button>
+          ))}
+        </div>
         
-        {/* Services - Bento Grid Layout */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-16">
-          {services.map((service, index) => (
+        {/* Services Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+          {filteredServices.map((service) => (
             <Link 
               key={service.title}
               href="#contacto"
-              className={`group relative overflow-hidden rounded-3xl transition-all duration-500 ${
+              className={`group relative overflow-hidden rounded-3xl transition-all duration-500 flex flex-col justify-between ${
                 service.featured 
-                  ? 'bg-background p-8 md:p-10 lg:row-span-2' 
-                  : 'bg-background/5 p-6 md:p-8 hover:bg-background'
+                  ? 'bg-background p-8 md:p-10 border border-primary/20 shadow-xl shadow-primary/5' 
+                  : 'bg-background/5 p-6 md:p-8 hover:bg-background border border-background/5 hover:border-primary/20'
               }`}
             >
-              {/* Number */}
-              <span className={`absolute top-6 right-6 text-7xl font-bold transition-colors duration-300 ${
-                service.featured 
-                  ? 'text-primary/10 group-hover:text-primary/20' 
-                  : 'text-background/10 group-hover:text-primary/20'
-              }`}>
-                {service.number}
-              </span>
-              
               <div className="relative h-full flex flex-col">
                 {/* Icon */}
                 <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-all duration-300 ${
@@ -124,6 +187,30 @@ export function Services() {
                   }`}>
                     {service.description}
                   </p>
+
+                  {/* Subservices List */}
+                  {service.subservices && (
+                    <ul className={`mt-6 space-y-2.5 border-t pt-6 ${
+                      service.featured 
+                        ? 'border-border/30' 
+                        : 'border-background/10'
+                    }`}>
+                      {service.subservices.map((sub, idx) => (
+                        <li key={idx} className="flex items-center gap-2.5 text-xs">
+                          <span className={`w-1.5 h-1.5 rounded-full ${
+                            service.featured ? 'bg-primary' : 'bg-primary/60 group-hover:bg-primary'
+                          }`} />
+                          <span className={
+                            service.featured 
+                              ? 'text-muted-foreground' 
+                              : 'text-background/60 group-hover:text-muted-foreground'
+                          }>
+                            {sub}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
                 
                 {/* Arrow */}

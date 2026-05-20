@@ -1,5 +1,7 @@
 "use client"
 
+import { Target, Eye, Heart } from "lucide-react"
+
 const values = [
   {
     number: "01",
@@ -32,6 +34,12 @@ const values = [
       </svg>
     )
   },
+]
+
+const missionVisionValues = [
+  { icon: Target, title: "Misión", description: "Impulsar el éxito de nuestros clientes con soluciones publicitarias innovadoras." },
+  { icon: Eye, title: "Visión", description: "Ser la agencia referente en publicidad visual, reconocida por nuestra excelencia." },
+  { icon: Heart, title: "Valores", description: "Compromiso, calidad, innovación y respeto en cada proyecto." },
 ]
 
 export function About() {
@@ -74,15 +82,42 @@ export function About() {
               <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               
               <div className="relative">
-                <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center mb-6">
                   <div className="w-12 h-12 bg-primary/10 border border-primary/20 rounded-xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all group-hover:animate-pulse-glow">
                     {value.icon}
                   </div>
-                  <span className="text-5xl font-bold text-border group-hover:text-primary/20 transition-colors">{value.number}</span>
                 </div>
                 <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">{value.title}</h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">
                   {value.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Divider */}
+        <div className="my-20 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+
+        {/* Mission, Vision, Values Grid */}
+        <div className="grid md:grid-cols-3 gap-6 stagger-children">
+          {missionVisionValues.map((item) => (
+            <div 
+              key={item.title}
+              className="group relative p-8 bg-secondary/50 border border-border rounded-2xl card-hover overflow-hidden"
+            >
+              {/* Glow effect on hover */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              
+              <div className="relative">
+                <div className="flex items-center mb-6">
+                  <div className="w-12 h-12 bg-primary/10 border border-primary/20 rounded-xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all group-hover:animate-pulse-glow">
+                    <item.icon className="w-6 h-6" />
+                  </div>
+                </div>
+                <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">{item.title}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  {item.description}
                 </p>
               </div>
             </div>

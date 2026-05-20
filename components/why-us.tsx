@@ -1,7 +1,6 @@
 "use client"
 
-import { Target, Eye, Heart, CheckCircle2, ArrowRight } from "lucide-react"
-import Link from "next/link"
+import { CheckCircle2 } from "lucide-react"
 
 const reasons = [
   {
@@ -24,12 +23,6 @@ const reasons = [
     title: "Garantía total",
     description: "Respaldamos cada proyecto con garantía extendida y soporte técnico continuo.",
   },
-]
-
-const values = [
-  { icon: Target, title: "Misión", description: "Impulsar el éxito de nuestros clientes con soluciones publicitarias innovadoras." },
-  { icon: Eye, title: "Visión", description: "Ser la agencia referente en publicidad visual, reconocida por nuestra excelencia." },
-  { icon: Heart, title: "Valores", description: "Compromiso, calidad, innovación y respeto en cada proyecto." },
 ]
 
 export function WhyUs() {
@@ -61,11 +54,6 @@ export function WhyUs() {
                 key={reason.number}
                 className="group relative p-8 bg-card border border-border rounded-3xl hover:border-primary/30 transition-all duration-500 card-hover"
               >
-                {/* Large number background */}
-                <span className="absolute top-6 right-6 text-8xl font-bold text-border/50 group-hover:text-primary/20 transition-colors">
-                  {reason.number}
-                </span>
-                
                 <div className="relative">
                   {/* Checkmark */}
                   <div className="w-12 h-12 bg-primary/10 border border-primary/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary group-hover:border-primary transition-all duration-300">
@@ -84,64 +72,8 @@ export function WhyUs() {
           </div>
         </div>
       </div>
-      
-      {/* LIGHT Section - Mission, Vision, Values */}
-      <div className="relative py-32 bg-foreground">
-        <div className="relative max-w-7xl mx-auto px-6">
-          {/* Values in horizontal layout */}
-          <div className="grid lg:grid-cols-3 gap-0 lg:divide-x divide-background/10">
-            {values.map((value, index) => (
-              <div key={value.title} className="group p-8 lg:p-12 text-center lg:text-left">
-                <div className="w-16 h-16 bg-background rounded-2xl flex items-center justify-center mx-auto lg:mx-0 mb-6 group-hover:bg-primary transition-colors duration-300">
-                  <value.icon className="w-7 h-7 text-primary group-hover:text-foreground transition-colors" />
-                </div>
-                <h3 className="text-2xl font-bold text-background mb-3">{value.title}</h3>
-                <p className="text-background/60 leading-relaxed">{value.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-      
-      {/* DARK Section - Stats Banner */}
-      <div className="relative py-20 bg-background overflow-hidden">
-        {/* Animated border */}
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
-        
-        <div className="relative max-w-7xl mx-auto px-6">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
-            {/* Stats in a row */}
-            <div className="flex flex-wrap justify-center lg:justify-start gap-8 lg:gap-16">
-              <div className="text-center lg:text-left">
-                <div className="text-5xl md:text-6xl font-bold text-primary mb-1">20+</div>
-                <div className="text-muted-foreground">Años</div>
-              </div>
-              <div className="hidden md:block w-px h-16 bg-border" />
-              <div className="text-center lg:text-left">
-                <div className="text-5xl md:text-6xl font-bold text-foreground mb-1">500+</div>
-                <div className="text-muted-foreground">Proyectos</div>
-              </div>
-              <div className="hidden md:block w-px h-16 bg-border" />
-              <div className="text-center lg:text-left">
-                <div className="text-5xl md:text-6xl font-bold text-foreground mb-1">200+</div>
-                <div className="text-muted-foreground">Clientes</div>
-              </div>
-            </div>
-            
-            {/* CTA */}
-            <Link 
-              href="#contacto"
-              className="group inline-flex items-center gap-3 px-8 py-4 bg-card border border-border rounded-xl hover:border-primary/50 transition-all"
-            >
-              <span className="text-foreground font-medium">Únete a ellos</span>
-              <ArrowRight className="w-5 h-5 text-primary group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </div>
-        </div>
-        
-        {/* Bottom border */}
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
-      </div>
+
+
     </section>
   )
 }
