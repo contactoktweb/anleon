@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useRef, useEffect, useState } from "react"
-import { Play, Pause, Volume2, VolumeX } from "lucide-react"
+import { Play, Pause, Volume2, VolumeX, Sparkles } from "lucide-react"
 
 const videos = [
   { src: "/trabajo1.mp4", title: "Letreros 3D y Neón", description: "Fabricación e instalación de letreros luminosos con acrílico y neón flex." },
@@ -13,9 +13,11 @@ export function VideoWorks() {
   const [playingStates, setPlayingStates] = useState<boolean[]>(videos.map(() => false))
   const [mutedStates, setMutedStates] = useState<boolean[]>(videos.map(() => true))
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([])
+  const titleRef = useRef<HTMLHeadingElement>(null)
+  const [titleVisible, setTitleVisible] = useState(false)
 
   useEffect(() => {
-    // Attempt to autoplay muted videos on load (many browsers require this to be triggered by interaction, but muted usually works)
+    // Attempt to autoplay muted videos on load
     videoRefs.current.forEach((vid, idx) => {
       if (vid) {
         vid.play().then(() => {
@@ -24,11 +26,23 @@ export function VideoWorks() {
             newStates[idx] = true
             return newStates
           })
-        }).catch(() => {
-          // Auto-play was prevented
-        })
+        }).catch(() => {})
       }
     })
+  }, [])
+
+  // Title drop-from-sky animation via IntersectionObserver
+  useEffect(() => {
+    const el = titleRef.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setTitleVisible(entry.isIntersecting)
+      },
+      { threshold: 0.2, rootMargin: "0px 0px -80px 0px" }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
   }, [])
 
   const togglePlay = (index: number) => {
@@ -66,18 +80,66 @@ export function VideoWorks() {
   }
 
   return (
-    <section className="py-32 bg-background relative" id="video-trabajos">
+    <section className="py-20 bg-background relative" id="video-trabajos">
       {/* Background accents */}
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
       <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[150px]" />
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-20">
-          <span className="inline-block text-primary font-medium mb-4 tracking-wide text-sm uppercase">Galería Multimedia</span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-            Nuestros Trabajos en <span className="text-primary neon-text">Acción</span>
+        <div className="max-w-3xl mb-16">
+          {/* Cosmic HUD Badge */}
+          <div className="relative inline-flex items-center gap-2.5 px-5 py-2.5 bg-transparent group overflow-hidden relative mb-4">
+            {/* Corner brackets */}
+            <div className="absolute top-0 left-0 w-2.5 h-2.5 border-t-2 border-l-2 border-primary group-hover:w-3.5 group-hover:h-3.5 transition-all duration-300" />
+            <div className="absolute top-0 right-0 w-2.5 h-2.5 border-t-2 border-r-2 border-cyan-400 group-hover:w-3.5 group-hover:h-3.5 transition-all duration-300" />
+            <div className="absolute bottom-0 left-0 w-2.5 h-2.5 border-b-2 border-l-2 border-cyan-400 group-hover:w-3.5 group-hover:h-3.5 transition-all duration-300" />
+            <div className="absolute bottom-0 right-0 w-2.5 h-2.5 border-b-2 border-r-2 border-primary group-hover:w-3.5 group-hover:h-3.5 transition-all duration-300" />
+            
+            {/* Cosmic shine */}
+            <div className="absolute inset-0 w-[200%] h-full bg-gradient-to-r from-transparent via-cyan-500/10 to-transparent -translate-x-full group-hover:animate-cosmic-shine" />
+            
+            {/* Blinking orbital dot */}
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500 shadow-[0_0_8px_#06b6d4]"></span>
+            </span>
+            
+            <Sparkles className="w-3.5 h-3.5 text-primary animate-pulse" />
+            <span className="text-xs text-zinc-300 font-semibold uppercase tracking-[0.2em] relative z-10">
+              Galería Multimedia
+            </span>
+          </div>
+          <h2
+            ref={titleRef}
+            className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 overflow-hidden"
+            aria-label="Nuestros Trabajos en Acción"
+          >
+            {["Nuestros", "Trabajos", "en"].map((word, i) => (
+              <span
+                key={word}
+                className="inline-block mr-[0.3em] transition-all duration-700 ease-out"
+                style={{
+                  transitionDelay: `${i * 120}ms`,
+                  opacity: titleVisible ? 1 : 0,
+                  transform: titleVisible ? 'translateY(0)' : 'translateY(-80px)'
+                }}
+              >
+                {word}
+              </span>
+            ))}
+            {" "}
+            <span
+              className="inline-block text-primary neon-text transition-all duration-700 ease-out"
+              style={{
+                transitionDelay: `360ms`,
+                opacity: titleVisible ? 1 : 0,
+                transform: titleVisible ? 'translateY(0)' : 'translateY(-80px)'
+              }}
+            >
+              Acción
+            </span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground">
             Explora de cerca la calidad, los detalles y el impacto visual de nuestros proyectos terminados a través de estos videos.
           </p>
         </div>

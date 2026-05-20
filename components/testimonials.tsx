@@ -41,7 +41,7 @@ export function Testimonials() {
   const duplicatedTestimonials = [...testimonials, ...testimonials]
 
   return (
-    <section id="testimonios" className="relative py-32 bg-[#050505] overflow-hidden">
+    <section id="testimonios" className="relative py-20 bg-[#050505] overflow-hidden">
       {/* Dynamic Background */}
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent shadow-[0_0_20px_rgba(0,102,255,0.8)]" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] md:w-[600px] md:h-[600px] bg-primary/10 rounded-full blur-[120px] pointer-events-none" />

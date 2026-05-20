@@ -14,21 +14,8 @@ export const metadata: Metadata = {
   keywords: 'publicidad, avisos luminosos, litografía, gran formato, señalización, neón, 3D, impresión',
   generator: 'v0.app',
   icons: {
-    icon: [
-      {
-        url: '/icon-light-32x32.webp',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.webp',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.webp',
-        type: 'image/webp',
-      },
-    ],
-    apple: '/apple-icon.webp',
+    icon: '/logo.webp',
+    apple: '/logo.webp',
   },
 }
 

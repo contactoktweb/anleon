@@ -4,7 +4,6 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { Menu, X } from "lucide-react"
-import { Button } from "@/components/ui/button"
 
 const navItems = [
   { label: "Inicio", href: "#inicio" },
@@ -49,29 +48,39 @@ export function Header() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-1">
+          <nav className="hidden lg:flex items-center gap-2">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="relative px-4 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors group"
+                className="relative px-4 py-2 text-sm font-medium text-muted-foreground hover:text-cyan-400 transition-colors group flex items-center gap-1.5"
               >
-                {item.label}
-                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-primary group-hover:w-1/2 transition-all duration-300" />
+                <span className="text-primary opacity-0 group-hover:opacity-100 transition-opacity font-mono text-[10px] tracking-widest">{'//'}</span>
+                <span className="relative z-10 tracking-wide">{item.label}</span>
+                <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-gradient-to-r from-primary to-cyan-400 group-hover:w-full transition-all duration-500" />
+                <span className="absolute top-0 right-0 w-1 h-1 border-t border-r border-cyan-400 opacity-0 group-hover:opacity-100 transition-all duration-300" />
+                <span className="absolute bottom-0 left-0 w-1 h-1 border-b border-l border-primary opacity-0 group-hover:opacity-100 transition-all duration-300" />
               </Link>
             ))}
           </nav>
 
           {/* CTA Button */}
           <div className="hidden lg:block">
-            <Button 
-              asChild 
-              className="neon-button bg-primary text-white hover:bg-primary/90 rounded-lg px-6 font-medium"
+            <Link 
+              href="#contacto"
+              className="relative inline-flex items-center justify-center px-6 h-10 bg-primary text-white hover:shadow-[0_0_15px_rgba(0,102,255,0.4)] transition-all duration-300 group overflow-hidden font-bold text-sm select-none"
             >
-              <Link href="#contacto">
-                Cotizar Proyecto
-              </Link>
-            </Button>
+              {/* Corner brackets */}
+              <div className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-white group-hover:w-2.5 group-hover:h-2.5 transition-all duration-300" />
+              <div className="absolute top-0 right-0 w-2 h-2 border-t-2 border-r-2 border-cyan-300 group-hover:w-2.5 group-hover:h-2.5 transition-all duration-300" />
+              <div className="absolute bottom-0 left-0 w-2 h-2 border-b-2 border-l-2 border-cyan-300 group-hover:w-2.5 group-hover:h-2.5 transition-all duration-300" />
+              <div className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-white group-hover:w-2.5 group-hover:h-2.5 transition-all duration-300" />
+              
+              {/* Cosmic shine */}
+              <div className="absolute inset-0 w-[200%] h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-cosmic-shine" />
+              
+              <span className="relative z-10">Cotizar Proyecto</span>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -87,24 +96,38 @@ export function Header() {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="lg:hidden bg-background/95 backdrop-blur-xl border-t border-border">
-          <nav className="flex flex-col p-6 gap-1">
+        <div className="lg:hidden bg-background/95 backdrop-blur-xl border-t border-border relative overflow-hidden">
+
+          
+          <nav className="flex flex-col p-6 gap-2 relative z-10">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={() => setIsOpen(false)}
-                className="py-3 px-4 text-muted-foreground hover:text-foreground hover:bg-secondary rounded-lg transition-colors"
+                className="relative py-3 px-4 text-muted-foreground hover:text-cyan-400 hover:bg-primary/5 border border-transparent hover:border-primary/20 rounded-none transition-all group flex items-center gap-3 overflow-hidden"
               >
-                {item.label}
+                <span className="text-primary opacity-0 group-hover:opacity-100 transition-opacity font-mono text-xs">{'//'}</span>
+                <span className="tracking-wide">{item.label}</span>
+                <span className="absolute left-0 top-0 bottom-0 w-[2px] bg-cyan-400 scale-y-0 group-hover:scale-y-100 transition-transform origin-top" />
               </Link>
             ))}
-            <Button 
-              asChild 
-              className="mt-4 neon-button bg-primary text-white hover:bg-primary/90 rounded-lg"
+            <Link 
+              href="#contacto"
+              onClick={() => setIsOpen(false)}
+              className="relative mt-4 inline-flex items-center justify-center w-full px-6 h-12 bg-primary text-white hover:shadow-[0_0_15px_rgba(0,102,255,0.4)] transition-all duration-300 group overflow-hidden font-bold text-base select-none"
             >
-              <Link href="#contacto">Cotizar Proyecto</Link>
-            </Button>
+              {/* Corner brackets */}
+              <div className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-white group-hover:w-2.5 group-hover:h-2.5 transition-all duration-300" />
+              <div className="absolute top-0 right-0 w-2 h-2 border-t-2 border-r-2 border-cyan-300 group-hover:w-2.5 group-hover:h-2.5 transition-all duration-300" />
+              <div className="absolute bottom-0 left-0 w-2 h-2 border-b-2 border-l-2 border-cyan-300 group-hover:w-2.5 group-hover:h-2.5 transition-all duration-300" />
+              <div className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-white group-hover:w-2.5 group-hover:h-2.5 transition-all duration-300" />
+              
+              {/* Cosmic shine */}
+              <div className="absolute inset-0 w-[200%] h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-cosmic-shine" />
+              
+              <span className="relative z-10">Cotizar Proyecto</span>
+            </Link>
           </nav>
         </div>
       )}

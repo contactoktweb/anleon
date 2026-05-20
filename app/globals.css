@@ -316,3 +316,59 @@ html {
 .animate-marquee:hover {
   animation-play-state: paused;
 }
+
+/* Cosmic shine animation */
+@keyframes cosmic-shine {
+  0% {
+    transform: translateX(-100%) rotate(5deg);
+  }
+  50%, 100% {
+    transform: translateX(100%) rotate(5deg);
+  }
+}
+
+.animate-cosmic-shine {
+  animation: cosmic-shine 4s ease-in-out infinite;
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+.holographic-inset-card {
+  background-color: #08080c !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.65);
+  border-right: 2px solid rgba(0, 0, 0, 0.55);
+  box-shadow: 
+    0 15px 30px -10px rgba(0, 0, 0, 0.65),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 5px 5px 10px rgba(0, 0, 0, 0.8),
+    inset -5px -5px 10px rgba(255, 255, 255, 0.03);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.holographic-inset-card:hover {
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
+  border-left: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 
+    0 28px 56px -14px rgba(0, 0, 0, 0.85),
+    0 15px 30px -10px rgba(0, 102, 255, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    inset 6px 6px 12px rgba(0, 0, 0, 0.85),
+    inset -6px -6px 12px rgba(255, 255, 255, 0.05);
+}
+
+.holographic-inset-image {
+  box-shadow: 
+    inset 8px 8px 16px rgba(0, 0, 0, 0.95),
+    inset -8px -8px 16px rgba(0, 0, 0, 0.95);
+}
+
+

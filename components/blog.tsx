@@ -30,7 +30,7 @@ const posts = [
 
 export function Blog() {
   return (
-    <section id="blog" className="relative py-32 bg-[#0a0a0a] overflow-hidden">
+    <section id="blog" className="relative py-20 bg-[#0a0a0a] overflow-hidden">
       {/* Neon accent */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent shadow-[0_0_10px_rgba(0,102,255,0.8)]" />
       

@@ -44,11 +44,26 @@ export function Hero() {
           {/* Left column - Main Typography */}
           <div className="col-span-1 lg:col-span-6 space-y-8 z-20">
             
-            {/* Glowing Badge */}
-            <div className="inline-flex items-center gap-3 animate-fade-in-up bg-zinc-900/50 border border-white/10 backdrop-blur-md px-4 py-2 rounded-full shadow-[0_0_20px_rgba(0,102,255,0.2)]">
-              <Sparkles className="w-4 h-4 text-primary animate-pulse" />
-              <span className="text-xs text-zinc-300 font-semibold uppercase tracking-[0.2em]">
-                Diseño & Fabricación Premium
+            {/* Cosmic HUD Badge */}
+            <div className="relative inline-flex items-center gap-2.5 px-5 py-2.5 bg-transparent group overflow-hidden animate-fade-in-up">
+              {/* Corner brackets */}
+              <div className="absolute top-0 left-0 w-2.5 h-2.5 border-t-2 border-l-2 border-primary group-hover:w-3.5 group-hover:h-3.5 transition-all duration-300" />
+              <div className="absolute top-0 right-0 w-2.5 h-2.5 border-t-2 border-r-2 border-cyan-400 group-hover:w-3.5 group-hover:h-3.5 transition-all duration-300" />
+              <div className="absolute bottom-0 left-0 w-2.5 h-2.5 border-b-2 border-l-2 border-cyan-400 group-hover:w-3.5 group-hover:h-3.5 transition-all duration-300" />
+              <div className="absolute bottom-0 right-0 w-2.5 h-2.5 border-b-2 border-r-2 border-primary group-hover:w-3.5 group-hover:h-3.5 transition-all duration-300" />
+              
+              {/* Cosmic shine */}
+              <div className="absolute inset-0 w-[200%] h-full bg-gradient-to-r from-transparent via-cyan-500/10 to-transparent -translate-x-full group-hover:animate-cosmic-shine" />
+              
+              {/* Blinking orbital dot */}
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500 shadow-[0_0_8px_#06b6d4]"></span>
+              </span>
+              
+              <Sparkles className="w-3.5 h-3.5 text-primary animate-pulse" />
+              <span className="text-xs text-zinc-300 font-semibold uppercase tracking-[0.2em] relative z-10">
+                Diseño & Fabricación
               </span>
             </div>
 
@@ -70,16 +85,24 @@ export function Hero() {
 
             {/* CTA */}
             <div className="flex flex-wrap gap-4 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-              <Button 
-                asChild 
-                size="lg" 
-                className="bg-primary text-white hover:bg-primary/90 hover:shadow-[0_0_30px_rgba(0,102,255,0.6)] rounded-full px-8 h-14 text-base font-bold transition-all duration-300 group border border-primary/50"
+              <Link 
+                href="#portafolio"
+                className="relative inline-flex items-center justify-center px-8 h-14 bg-primary text-white hover:shadow-[0_0_30px_rgba(0,102,255,0.5)] transition-all duration-300 group overflow-hidden font-bold text-base select-none"
               >
-                <Link href="#portafolio">
+                {/* Corner brackets */}
+                <div className="absolute top-0 left-0 w-2.5 h-2.5 border-t-2 border-l-2 border-white group-hover:w-3.5 group-hover:h-3.5 transition-all duration-300" />
+                <div className="absolute top-0 right-0 w-2.5 h-2.5 border-t-2 border-r-2 border-cyan-300 group-hover:w-3.5 group-hover:h-3.5 transition-all duration-300" />
+                <div className="absolute bottom-0 left-0 w-2.5 h-2.5 border-b-2 border-l-2 border-cyan-300 group-hover:w-3.5 group-hover:h-3.5 transition-all duration-300" />
+                <div className="absolute bottom-0 right-0 w-2.5 h-2.5 border-b-2 border-r-2 border-white group-hover:w-3.5 group-hover:h-3.5 transition-all duration-300" />
+                
+                {/* Cosmic shine */}
+                <div className="absolute inset-0 w-[200%] h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-cosmic-shine" />
+                
+                <span className="relative z-10 flex items-center gap-2">
                   Explorar trabajos
-                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </Button>
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
             </div>
           </div>
 
@@ -95,8 +118,8 @@ export function Hero() {
               style={{ animationDuration: '6s' }}
             >
               <Image 
-                src="/images/proyecto-letrero-luminoso-1.webp" 
-                alt="Letrero Luminoso Destacado" 
+                src="/images/proyecto-aviso-57.webp" 
+                alt="Letrero 3D Personalizado Anleon" 
                 fill 
                 className="object-cover" 
                 priority
@@ -126,7 +149,7 @@ export function Hero() {
 
             {/* Front Left Floating Image */}
             <div 
-              className="absolute z-30 w-[45%] md:w-[40%] aspect-[4/3] rounded-[1.5rem] overflow-hidden border border-white/20 shadow-[0_15px_35px_rgba(0,0,0,0.6)] animate-float -translate-x-[50%] translate-y-[30%] -rotate-3" 
+              className="absolute z-30 w-[50%] md:w-[45%] aspect-square rounded-[2rem] overflow-hidden border border-white/20 shadow-[0_15px_35px_rgba(0,0,0,0.6)] animate-float -translate-x-[50%] translate-y-[30%] -rotate-3" 
               style={{ animationDuration: '7s', animationDelay: '2s' }}
             >
               <Image 
