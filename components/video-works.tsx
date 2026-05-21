@@ -80,7 +80,7 @@ export function VideoWorks() {
   }
 
   return (
-    <section className="py-20 bg-background relative" id="video-trabajos">
+    <section className="py-20 bg-background relative overflow-hidden" id="video-trabajos">
       {/* Background accents */}
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
       <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[150px]" />

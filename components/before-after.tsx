@@ -133,7 +133,7 @@ export function BeforeAfter() {
       <div className="container relative mx-auto px-4 md:px-6 z-10">
         <div className="text-center mb-12">
           {/* Cosmic HUD Badge */}
-          <div className="relative inline-flex items-center gap-2.5 px-5 py-2.5 bg-transparent group overflow-hidden relative mb-4">
+          <div className="relative inline-flex items-center gap-2.5 px-5 py-2.5 bg-transparent group overflow-hidden mb-4">
             {/* Corner brackets */}
             <div className="absolute top-0 left-0 w-2.5 h-2.5 border-t-2 border-l-2 border-primary group-hover:w-3.5 group-hover:h-3.5 transition-all duration-300" />
             <div className="absolute top-0 right-0 w-2.5 h-2.5 border-t-2 border-r-2 border-cyan-400 group-hover:w-3.5 group-hover:h-3.5 transition-all duration-300" />
@@ -151,20 +151,20 @@ export function BeforeAfter() {
 
             <Sparkles className="w-3.5 h-3.5 text-primary animate-pulse" />
             <span className="text-xs text-zinc-600 font-semibold uppercase tracking-[0.2em] relative z-10">
-              Antes & Después
+              Nuestras Transformaciones
             </span>
           </div>
           <h2
             ref={titleRef}
-            className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl mb-4 text-zinc-900"
-            aria-label="Nuestras Transformaciones"
+            className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl mb-4 text-zinc-900 max-w-4xl mx-auto leading-tight"
+            aria-label="Imagina la fachada de tu empresa y nosotros lo hacemos realidad"
           >
-            {["Nuestras", "Transformaciones"].map((word, i) => (
+            {["Imagina", "la", "fachada", "de", "tu", "empresa", "y", "nosotros", "lo", "hacemos", "realidad"].map((word, i) => (
               <span
-                key={word}
+                key={i}
                 className="inline-block mr-[0.25em] transition-all duration-700 ease-out"
                 style={{
-                  transitionDelay: `${i * 150}ms`,
+                  transitionDelay: `${i * 100}ms`,
                   opacity: titleVisible ? 1 : 0,
                   transform: titleVisible ? 'translateY(0)' : 'translateY(-90px)'
                 }}
@@ -174,7 +174,7 @@ export function BeforeAfter() {
             ))}
           </h2>
           <p className="text-lg text-zinc-600 max-w-2xl mx-auto">
-            Descubre el antes y después de nuestros proyectos. Desliza el control para ver la diferencia y el impacto de nuestro trabajo.
+            Tu estilo, tu empresa y nuestra tecnología en tu aviso.
           </p>
         </div>
 

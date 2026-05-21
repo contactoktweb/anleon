@@ -4,30 +4,28 @@ import { useState } from "react"
 import Image from "next/image"
 import { ArrowUpRight, Eye, Sparkles, ChevronLeft, ChevronRight } from "lucide-react"
 
-const categories = ["Todos", "Avisos", "Gran Formato", "Letreros Luminosos", "Instalaciones"]
-
 // Categorize the images reasonably
 const projects = [
-  { src: "/images/proyecto-letrero-luminoso-1.webp", title: "Letrero Luminoso 1", category: "Letreros Luminosos", type: "Instalación exterior" },
-  { src: "/images/proyecto-letrero-luminoso-2.webp", title: "Letrero Luminoso 2", category: "Letreros Luminosos", type: "Instalación interior" },
+  { src: "/images/proyecto-letrero-luminoso-1.webp", title: "Letrero Luminoso 1", category: "Avisos", type: "Instalación exterior" },
+  { src: "/images/proyecto-letrero-luminoso-2.webp", title: "Letrero Luminoso 2", category: "Avisos", type: "Instalación interior" },
   { src: "/images/proyecto-aviso-nube.webp", title: "Aviso Nube", category: "Avisos", type: "Aviso temático" },
   { src: "/images/proyecto-aviso-1.webp", title: "Aviso Corporativo 1", category: "Avisos", type: "Fabricación e instalación" },
   { src: "/images/proyecto-aviso-2.webp", title: "Aviso Corporativo 2", category: "Avisos", type: "Fabricación e instalación" },
   { src: "/images/proyecto-aviso-4.webp", title: "Aviso Corporativo 4", category: "Avisos", type: "Instalaciones" },
   { src: "/images/proyecto-aviso-6.webp", title: "Aviso Corporativo 6", category: "Avisos", type: "Letrero acrílico" },
   { src: "/images/proyecto-aviso-11.webp", title: "Aviso Corporativo 11", category: "Avisos", type: "Letrero acrílico" },
-  { src: "/images/proyecto-aviso-17.webp", title: "Instalación 17", category: "Instalaciones", type: "Trabajo en terreno" },
+  { src: "/images/proyecto-aviso-17.webp", title: "Instalación 17", category: "Avisos", type: "Trabajo en terreno" },
   { src: "/images/proyecto-aviso-19.webp", title: "Aviso 19", category: "Avisos", type: "Letras 3D" },
   { src: "/images/proyecto-aviso-25.webp", title: "Aviso 25", category: "Avisos", type: "Letras 3D" },
   { src: "/images/proyecto-aviso-26.webp", title: "Aviso 26", category: "Avisos", type: "Fabricación en acrílico" },
   { src: "/images/proyecto-aviso-46.webp", title: "Aviso 46", category: "Avisos", type: "Aviso iluminado" },
   { src: "/images/proyecto-aviso-47.webp", title: "Aviso 47", category: "Avisos", type: "Aviso iluminado" },
-  { src: "/images/proyecto-aviso-57.webp", title: "Instalación 57", category: "Instalaciones", type: "Montaje" },
-  { src: "/images/proyecto-aviso-59.webp", title: "Instalación 59", category: "Instalaciones", type: "Montaje" },
+  { src: "/images/proyecto-aviso-57.webp", title: "Instalación 57", category: "Avisos", type: "Montaje" },
+  { src: "/images/proyecto-aviso-59.webp", title: "Instalación 59", category: "Avisos", type: "Montaje" },
   { src: "/images/proyecto-aviso-62.webp", title: "Aviso 62", category: "Avisos", type: "Letrero comercial" },
   { src: "/images/proyecto-aviso-66.webp", title: "Aviso 66", category: "Avisos", type: "Letrero comercial" },
   { src: "/images/proyecto-aviso-80.webp", title: "Aviso 80", category: "Avisos", type: "Letrero comercial" },
-  { src: "/images/proyecto-banner-gran-formato.webp", title: "Banner Gran Formato", category: "Gran Formato", type: "Impresión alta calidad" },
+
 
   // AVISOS ADICIONALES
   { src: "/avisos/1a214ab5-af14-4032-b8fe-2682bc3d66f2-261x300.jpg.webp", title: "Aviso Volumétrico", category: "Avisos", type: "Letrero en acrílico" },
@@ -44,26 +42,30 @@ const projects = [
   { src: "/avisos/WhatsApp-Image-2025-01-10-at-4.42.47-PM-300x300.webp", title: "Placa Corporativa", category: "Avisos", type: "Aviso en acrílico" },
   { src: "/avisos/WhatsApp-Image-2025-01-10-at-4.50.41-PM-300x258.webp", title: "Neon Flex Diseñado", category: "Avisos", type: "Decoración interior" },
 
-  // INSTALACIONES ADICIONALES
-  { src: "/fachada1.webp", title: "Montaje Fachada Exterior", category: "Instalaciones", type: "Instalación completa" },
-  { src: "/fachada2.webp", title: "Estructura Exterior Local", category: "Instalaciones", type: "Montaje de estructura" },
-  { src: "/gran-formato/fACHADA-1-768x507.jpg.webp", title: "Aviso de Entrada", category: "Instalaciones", type: "Fachada e iluminación" },
-  { src: "/gran-formato/fACHADA-2-768x516.jpg.webp", title: "Letrero de Altura", category: "Instalaciones", type: "Montaje exterior" },
+  // AVISOS (Fachadas e Instalaciones)
+  { src: "/fachada1.webp", title: "Montaje Fachada Exterior", category: "Avisos", type: "Instalación completa" },
+  { src: "/fachada2.webp", title: "Estructura Exterior Local", category: "Avisos", type: "Montaje de estructura" },
+  { src: "/gran-formato/fACHADA-1-768x507.jpg.webp", title: "Aviso de Entrada", category: "Avisos", type: "Fachada e iluminación" },
+  { src: "/gran-formato/fACHADA-2-768x516.jpg.webp", title: "Letrero de Altura", category: "Avisos", type: "Montaje exterior" },
 
-  // GRAN FORMATO ADICIONALES
-  { src: "/gran-formato/Anleon-Horizontal-1-1536x864.jpg.webp", title: "Valla Publicitaria", category: "Gran Formato", type: "Banner gran escala" },
-  { src: "/gran-formato/Anleon-Horizontal-1536x864.jpg.webp", title: "Estructura de Valla", category: "Gran Formato", type: "Montaje metálico" },
-  { src: "/gran-formato/Anleon-Horizontal-2.webp", title: "Decoración en Vinilo", category: "Gran Formato", type: "Vinilo adhesivo pared" },
-  { src: "/gran-formato/Anleon-Horizontal-3-1536x864.webp", title: "Señalización de Seguridad", category: "Gran Formato", type: "Avisos industriales" },
-  { src: "/gran-formato/Anleon-Horizontal-4.webp", title: "Vidriera con Vinilo", category: "Gran Formato", type: "Vinilo microperforado" },
-  { src: "/gran-formato/Anleon-Horizontal-7.webp", title: "Impresión de Gran Escala", category: "Gran Formato", type: "Banner publicitario" },
-  { src: "/gran-formato/AnleonProductos-4-1024x576.webp", title: "Vinilos Corporativos", category: "Gran Formato", type: "Instalación en vidrio" },
-  { src: "/images/news-large-format.webp", title: "Impresión de Banner", category: "Gran Formato", type: "Publicidad exterior" },
-  { src: "/images/news-outdoor-trends.webp", title: "Valla de Carretera", category: "Gran Formato", type: "Instalación en terreno" }
+  // GRAN FORMATO
+  { src: "/gran-formato/AnleonProductos-1-1024x576.webp", title: "Impresión Banner 13 Oz", category: "Gran Formato", type: "Impresión de alta calidad" },
+  { src: "/gran-formato/Anleon-Horizontal-2.webp", title: "Arañas y estructuras", category: "Gran Formato", type: "Estructuras portátiles" },
+  { src: "/gran-formato/AnleonProductos-2-1024x576.webp", title: "Vinilo de automóviles", category: "Gran Formato", type: "Impresión de alta calidad" },
+  { src: "/gran-formato/AnleonProductos-4-1024x576.webp", title: "Impresión Vinilo", category: "Gran Formato", type: "Impresión de alta calidad" },
+
+  // LITOGRAFIA
+  { src: "/litografia/lit_1-8.jpeg", title: "Talonarios", category: "Litografía", type: "Impresión offset" },
+  { src: "/litografia/lit_1-10.jpeg", title: "Tarjetas corporativas", category: "Litografía", type: "Tarjetas de presentación" },
+  { src: "/litografia/lit_1-9.jpeg", title: "Volantes promocionales", category: "Litografía", type: "Publicidad masiva" },
+  { src: "/litografia/lit_1-12.jpeg", title: "Impresión Comercial", category: "Litografía", type: "Formatos impresos" }
 ]
 
+// Categories hardcoded to strictly match the requested order
+const categories = ["Avisos", "Litografía", "Gran Formato", "Otros", "Todos"]
+
 export function Portfolio() {
-  const [activeCategory, setActiveCategory] = useState("Todos")
+  const [activeCategory, setActiveCategory] = useState("Avisos")
   const [currentIndex, setCurrentIndex] = useState(0)
   const [lightboxSrc, setLightboxSrc] = useState<string | null>(null)
   const [lightboxTitle, setLightboxTitle] = useState<string>("")
@@ -136,6 +138,34 @@ export function Portfolio() {
             </h2>
           </div>
           
+        </div>
+        
+        {/* Dynamic Category Filters */}
+        <div className="flex flex-wrap justify-center gap-3 md:gap-4 mb-8">
+          {categories.map((cat) => {
+            const isActive = activeCategory === cat;
+            return (
+              <button
+                key={cat}
+                onClick={() => handleCategoryChange(cat)}
+                className={`relative px-5 py-2 md:px-8 md:py-2.5 text-xs md:text-sm font-mono font-bold uppercase tracking-widest transition-all duration-300 border ${
+                  isActive 
+                    ? 'bg-primary/10 border-primary text-white shadow-[0_0_20px_rgba(0,102,255,0.4)]' 
+                    : 'bg-black/30 backdrop-blur-sm border-white/10 text-zinc-400 hover:border-cyan-500/50 hover:text-cyan-400 hover:bg-cyan-500/5'
+                }`}
+              >
+                {/* HUD Corner Accents for active state */}
+                {isActive && (
+                  <>
+                    <div className="absolute -top-1 -left-1 w-2.5 h-2.5 border-t-2 border-l-2 border-cyan-400" />
+                    <div className="absolute -bottom-1 -right-1 w-2.5 h-2.5 border-b-2 border-r-2 border-cyan-400" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/20 to-transparent animate-cosmic-shine pointer-events-none" />
+                  </>
+                )}
+                {cat}
+              </button>
+            )
+          })}
         </div>
         
         {/* Holographic 3D Carousel */}
@@ -275,17 +305,7 @@ export function Portfolio() {
             </div>
           )}
 
-          {/* Empty state fallback */}
-          {filteredProjects.length === 0 && (
-            <div className="flex flex-col items-center justify-center h-full text-center z-50">
-               <div className="w-16 h-16 border border-zinc-800 rounded-full flex items-center justify-center mb-4">
-                 <Sparkles className="w-6 h-6 text-zinc-600" />
-               </div>
-               <p className="text-zinc-500 font-mono text-sm uppercase tracking-widest">
-                 [NO DATA FOUND]
-               </p>
-            </div>
-          )}
+
         </div>
       </div>
 
