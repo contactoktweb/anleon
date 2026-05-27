@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { WhatsappButton } from '@/components/whatsapp-button'
 import './globals.css'
 
 const inter = Inter({
@@ -28,6 +29,7 @@ export default function RootLayout({
     <html lang="es" className="bg-background">
       <body className={`${inter.variable} font-sans antialiased`}>
         {children}
+        <WhatsappButton />
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>

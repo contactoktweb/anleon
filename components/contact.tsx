@@ -124,32 +124,46 @@ export function Contact() {
             
             {/* Contact Info */}
             <div className="grid sm:grid-cols-2 gap-6">
-              {contactInfo.map((item) => (
-                <a 
-                  key={item.label}
-                  href={item.href}
-                  className="group relative flex items-center gap-4 p-4 bg-secondary/50 rounded-none transition-all card-hover"
-                >
-                  {/* Open corner borders for card */}
-                  <div className="absolute top-0 left-2 right-2 h-[1px] bg-border group-hover:bg-primary/30 transition-colors" />
-                  <div className="absolute bottom-0 left-2 right-2 h-[1px] bg-border group-hover:bg-primary/30 transition-colors" />
-                  <div className="absolute left-0 top-2 bottom-2 w-[1px] bg-border group-hover:bg-primary/30 transition-colors" />
-                  <div className="absolute right-0 top-2 bottom-2 w-[1px] bg-border group-hover:bg-primary/30 transition-colors" />
+              {contactInfo.map((item) => {
+                const isWhatsapp = item.label === "WhatsApp"
+                const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "573000000000"
+                const href = isWhatsapp 
+                  ? `https://wa.me/${whatsappNumber}` 
+                  : item.href
+                
+                const value = isWhatsapp && process.env.NEXT_PUBLIC_WHATSAPP_NUMBER
+                  ? `+${whatsappNumber.slice(0, 2)} ${whatsappNumber.slice(2, 5)} ${whatsappNumber.slice(5, 8)} ${whatsappNumber.slice(8)}`
+                  : item.value
 
-                  <div className="relative w-12 h-12 shrink-0 bg-primary/10 rounded-none flex items-center justify-center group-hover:bg-primary transition-all group-hover:animate-pulse-glow">
-                    {/* Open corner borders for icon */}
-                    <div className="absolute top-0 left-1 right-1 h-[1px] bg-primary/20 group-hover:bg-transparent transition-colors" />
-                    <div className="absolute bottom-0 left-1 right-1 h-[1px] bg-primary/20 group-hover:bg-transparent transition-colors" />
-                    <div className="absolute left-0 top-1 bottom-1 w-[1px] bg-primary/20 group-hover:bg-transparent transition-colors" />
-                    <div className="absolute right-0 top-1 bottom-1 w-[1px] bg-primary/20 group-hover:bg-transparent transition-colors" />
-                    <item.icon className="w-5 h-5 text-primary group-hover:text-white transition-colors relative z-10" />
-                  </div>
-                  <div className="min-w-0 flex-1 relative z-10">
-                    <div className="text-sm text-muted-foreground">{item.label}</div>
-                    <div className="font-medium group-hover:text-primary transition-colors break-all">{item.value}</div>
-                  </div>
-                </a>
-              ))}
+                return (
+                  <a 
+                    key={item.label}
+                    href={href}
+                    target={href.startsWith("http") ? "_blank" : undefined}
+                    rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                    className="group relative flex items-center gap-4 p-4 bg-secondary/50 rounded-none transition-all card-hover"
+                  >
+                    {/* Open corner borders for card */}
+                    <div className="absolute top-0 left-2 right-2 h-[1px] bg-border group-hover:bg-primary/30 transition-colors" />
+                    <div className="absolute bottom-0 left-2 right-2 h-[1px] bg-border group-hover:bg-primary/30 transition-colors" />
+                    <div className="absolute left-0 top-2 bottom-2 w-[1px] bg-border group-hover:bg-primary/30 transition-colors" />
+                    <div className="absolute right-0 top-2 bottom-2 w-[1px] bg-border group-hover:bg-primary/30 transition-colors" />
+
+                    <div className="relative w-12 h-12 shrink-0 bg-primary/10 rounded-none flex items-center justify-center group-hover:bg-primary transition-all group-hover:animate-pulse-glow">
+                      {/* Open corner borders for icon */}
+                      <div className="absolute top-0 left-1 right-1 h-[1px] bg-primary/20 group-hover:bg-transparent transition-colors" />
+                      <div className="absolute bottom-0 left-1 right-1 h-[1px] bg-primary/20 group-hover:bg-transparent transition-colors" />
+                      <div className="absolute left-0 top-1 bottom-1 w-[1px] bg-primary/20 group-hover:bg-transparent transition-colors" />
+                      <div className="absolute right-0 top-1 bottom-1 w-[1px] bg-primary/20 group-hover:bg-transparent transition-colors" />
+                      <item.icon className="w-5 h-5 text-primary group-hover:text-white transition-colors relative z-10" />
+                    </div>
+                    <div className="min-w-0 flex-1 relative z-10">
+                      <div className="text-sm text-muted-foreground">{item.label}</div>
+                      <div className="font-medium group-hover:text-primary transition-colors break-all">{value}</div>
+                    </div>
+                  </a>
+                )
+              })}
             </div>
           </div>
           

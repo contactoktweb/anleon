@@ -3,7 +3,7 @@
 import React, { useRef, useEffect, useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowUpRight, Facebook, Instagram } from "lucide-react"
+import { ArrowUpRight, Facebook, Instagram, MessageCircle } from "lucide-react"
 
 const Tiktok = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -43,6 +43,7 @@ const socials = [
   { label: "Facebook", href: "#", Icon: Facebook },
   { label: "Instagram", href: "#", Icon: Instagram },
   { label: "TikTok", href: "#", Icon: Tiktok },
+  { label: "WhatsApp", href: "#", Icon: MessageCircle },
 ]
 
 export function Footer() {
@@ -105,19 +106,29 @@ export function Footer() {
               Más de 20 años orbitando la excelencia visual. Forjamos la identidad de tu marca con tecnología de punta y un nivel de detalle intergaláctico.
             </p>
             <div className={`flex gap-4 ${transitionClass} ${textAnim} delay-200`}>
-              {socials.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  className="relative w-10 h-10 bg-transparent border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-cyan-400 hover:border-cyan-400/50 hover:shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-all group overflow-hidden"
-                  aria-label={social.label}
-                >
-                  {/* HUD Corner small */}
-                  <span className="absolute top-0 left-0 w-1 h-1 border-t border-l border-primary opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <span className="absolute bottom-0 right-0 w-1 h-1 border-b border-r border-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <social.Icon className="w-4 h-4 relative z-10 group-hover:scale-110 transition-transform" />
-                </a>
-              ))}
+              {socials.map((social) => {
+                const isWhatsapp = social.label === "WhatsApp"
+                const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "573000000000"
+                const href = isWhatsapp 
+                  ? `https://wa.me/${whatsappNumber}` 
+                  : social.href
+
+                return (
+                  <a
+                    key={social.label}
+                    href={href}
+                    target={href !== "#" ? "_blank" : undefined}
+                    rel={href !== "#" ? "noopener noreferrer" : undefined}
+                    className="relative w-10 h-10 bg-transparent border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-cyan-400 hover:border-cyan-400/50 hover:shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-all group overflow-hidden"
+                    aria-label={social.label}
+                  >
+                    {/* HUD Corner small */}
+                    <span className="absolute top-0 left-0 w-1 h-1 border-t border-l border-primary opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <span className="absolute bottom-0 right-0 w-1 h-1 border-b border-r border-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <social.Icon className="w-4 h-4 relative z-10 group-hover:scale-110 transition-transform" />
+                  </a>
+                )
+              })}
             </div>
           </div>
           
