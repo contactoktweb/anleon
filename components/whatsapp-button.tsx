@@ -15,7 +15,7 @@ export function WhatsappButton() {
   useEffect(() => {
     setIsMounted(true)
     
-    // Show the tooltip after 3 seconds for a subtle call to action
+    // Show tooltip after 3 seconds for a subtle call to action
     const timer = setTimeout(() => {
       const isDismissed = localStorage.getItem("whatsapp-tooltip-dismissed")
       if (!isDismissed) {
